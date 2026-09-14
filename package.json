@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "description": "Bun monolith fusing seven overlooked substrates: sovereign fs-map, ralph regen, pi-natives, fastest-wins cancel-rest transport, empty-backhaul profit oracle, AVO dual-latent loop, event contracts",
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.13",
+    "@types/bun": "latest"
+  },
+  "name": "sovereign-dispersal",
+  "scripts": {
+    "audit": "bun run scripts/audit.ts",
+    "build": "bun build src/index.ts --outdir dist --target bun",
+    "deploy": "bun run scripts/deploy.ts",
+    "dev": "bun run src/index.ts",
+    "lint": "bunx @biomejs/biome check ./src ./scripts ./tests",
+    "lint:fix": "bunx @biomejs/biome check --write ./src ./scripts ./tests",
+    "natives:build": "bun run scripts/natives.ts",
+    "profit:avo": "bun run src/profit/avo.ts",
+    "profit:backhaul": "bun run src/profit/backhaul.ts",
+    "ralph:fix": "bun run scripts/ralph-fix.ts",
+    "route-a": "bun run src/transport/route-a.ts",
+    "test": "bun test"
+  },
+  "type": "module",
+  "version": "0.2.0"
+}

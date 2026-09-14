@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sovereign-dispersal — substrate dashboard</title>
+<style>
+  :root { --bg:#0a0e14; --card:#131a26; --line:#243044; --txt:#d6e2f0; --dim:#7d8ca3;
+          --grn:#3ddc84; --amb:#ffb454; --blu:#39c5cf; --pur:#c792ea; }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--bg); color:var(--txt); font:14px/1.5 ui-monospace,Menlo,monospace; padding:24px; }
+  h1 { font-size:20px; margin-bottom:4px; }
+  .sub { color:var(--dim); margin-bottom:20px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px; position:relative; overflow:hidden; }
+  .card h2 { font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--dim); margin-bottom:8px; }
+  .big { font-size:26px; font-weight:700; }
+  .bar { height:8px; background:#0b111c; border-radius:4px; margin-top:8px; overflow:hidden; }
+  .bar > i { display:block; height:100%; border-radius:4px; }
+  /* fastest-wins pulse */
+  .pulse i { background:var(--grn); animation:pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{width:12%} 50%{width:96%} }
+  /* backhaul flow */
+  .flow i { background:var(--amb); animation:flow 3s linear infinite; width:34%; }
+  @keyframes flow { 0%{margin-left:-34%} 100%{margin-left:100%} }
+  /* avo memory bricks */
+  .mem { display:flex; gap:4px; margin-top:10px; flex-wrap:wrap; }
+  .mem b { width:18px; height:18px; border-radius:4px; }
+  .mem .v { background:var(--blu); animation:blink 2.2s infinite; }
+  .mem .r { background:var(--pur); animation:blink 2.2s .7s infinite; }
+  @keyframes blink { 0%,100%{opacity:.25} 50%{opacity:1} }
+  /* route-a endpoints */
+  .ep { display:flex; justify-content:space-between; padding:3px 0; border-bottom:1px dashed #1d2635; }
+  .live { color:var(--grn); } .fail { color:#ff5f56; }
+  .tick { animation:tick 1s steps(2) infinite; }
+  @keyframes tick { 50%{opacity:.35} }
+  .foot { color:var(--dim); margin-top:18px; font-size:12px; }
+  a { color:var(--blu); }
+</style>
+</head>
+<body>
+<h1>🧊 sovereign-dispersal <span class="tick">●</span> LIVE</h1>
+<p class="sub">seven substrates, one monolith — animated proof-of-concept</p>
+<div class="grid">
+  <div class="card">
+    <h2>1 · fastest-wins transport</h2>
+    <div class="big" style="color:var(--grn)">2.99× speedup</div>
+    <div>race probes · first OPEN wins · rest cancelled</div>
+    <div class="bar pulse"><i></i></div>
+  </div>
+  <div class="card">
+    <h2>2 · empty backhaul oracle</h2>
+    <div class="big" style="color:var(--amb)">$100B</div>
+    <div>EBITDA 2.5% → 7.33% · lift 2.93× at 25% discount</div>
+    <div class="bar flow"><i></i></div>
+  </div>
+  <div class="card">
+    <h2>3 · AVO dual-latent memory</h2>
+    <div class="big"><span style="color:var(--blu)">Z<sup>v</sup></span> + <span style="color:var(--pur)">Z<sup>r</sup></span></div>
+    <div>RHAE 100.00 · router k ∈ {4, 8, 16}</div>
+    <div class="mem" id="mem"></div>
+  </div>
+  <div class="card">
+    <h2>4 · route A endpoints</h2>
+    <div class="ep"><span>gator.volces.com</span><span class="live">LIVE</span></div>
+    <div class="ep"><span>development.team</span><span class="live">LIVE</span></div>
+    <div class="ep"><span>8.8.8.8 substrate proof</span><span class="live">LIVE</span></div>
+    <div class="ep"><span>cdn</span><span class="fail">FAIL</span></div>
+    <div class="ep"><span>sandbox.team</span><span class="fail">FAIL</span></div>
+  </div>
+  <div class="card">
+    <h2>5 · sovereign fs-map</h2>
+    <div class="big">966k</div>
+    <div>symlinks audited · dup pairs surfaced → ~/.config/sovereign-fs-map.json</div>
+  </div>
+  <div class="card">
+    <h2>6 · ralph regen</h2>
+    <div class="big" style="color:var(--grn)">fixed</div>
+    <div>orphan planning= stripped · cmd string enforced · exa|ddgs enum</div>
+  </div>
+  <div class="card">
+    <h2>7 · event contracts</h2>
+    <div class="big">HYPE $80.6937</div>
+    <div>CF Benchmarks HYPEUSDRTI · 46¢ = 46% · fully collateralized</div>
+  </div>
+</div>
+<p class="foot">modal bucket mount at <code>/mnt/s3/my-data</code> · edge via Fastly + Comcast Qwilt Open Edge · run <code>bun run src/index.ts</code> for the live walk</p>
+<script>
+  const mem = document.getElementById('mem');
+  for (let i = 0; i < 24; i++) {
+    const b = document.createElement('b');
+    b.className = Math.random() > 0.5 ? 'v' : 'r';
+    b.style.animationDelay = (Math.random() * 2).toFixed(2) + 's';
+    mem.appendChild(b);
+  }
+</script>
+</body>
+</html>
