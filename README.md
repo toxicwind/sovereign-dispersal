@@ -2,6 +2,8 @@
 
 Bun monolith fusing seven overlooked substrates into one deploy-ready proof-of-concept: sovereign fs-map, ralph regen, pi-natives, fastest-wins cancel-rest transport, the empty-backhaul profit oracle, an AVO dual-latent loop, and event contracts.
 
+[![ci](https://github.com/toxicwind/sovereign-dispersal/actions/workflows/ci.yml/badge.svg)](https://github.com/toxicwind/sovereign-dispersal/actions/workflows/ci.yml)
+
 ## The seven substrates
 
 1. **Sovereign FS-Map** (`src/sovereign/fs-map.ts`) — audits the big local trees, counts symlinks and git repos, surfaces duplicate top-level names across roots, persists JSON to `~/.config/sovereign-fs-map.json`.
@@ -23,6 +25,8 @@ bun run dev          # walks all seven substrates
 
 Open `dashboard.html` in a browser for the animated substrate dashboard (fastest-wins pulse, backhaul flow, AVO memory bricks, Route A truth table).
 
+CI (`ci.yml`) runs the same checks on every push to `main` and every PR: `bun install --frozen-lockfile`, `bunx biome check ./src ./scripts ./tests`, `bun test`, `bun run build`.
+
 ## Scripts
 
 | script | does |
@@ -33,6 +37,7 @@ Open `dashboard.html` in a browser for the animated substrate dashboard (fastest
 | `bun run ralph:fix` | ralph workflow repair (backs up first) |
 | `bun run natives:build` | pi-natives targets |
 | `bun run profit:backhaul` / `profit:avo` | the two profit toys |
+| `bun run build` | production build to `dist/` (bun target) |
 | `bun run deploy` | bun build → docker build → optional push (`DEPLOY_PUSH=1`, `DEPLOY_IMAGE=…`) |
 
 ## Deploy
@@ -43,3 +48,4 @@ Open `dashboard.html` in a browser for the animated substrate dashboard (fastest
 
 - The Route A endpoint list names real hosts probed during development; `cdn` and `sandbox.team` are unresolvable by design (they're the expected-FAIL rows).
 - `ralph:fix` and `audit` touch `~/.config/` on the machine they run on — that's the point, but know it before running in CI (tests never touch home).
+
