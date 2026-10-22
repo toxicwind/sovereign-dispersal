@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# estate-dispersal — primary operation: the estate dispersal engine
+# (fs-map audit, ralph regen, pi-natives, fastest-wins transport, backhaul oracle,
+# AVO dual-latent loop, event contracts in one binary).
+# Usage: bin/run
+set -euo pipefail
+cd "$(dirname "$0")/.."
+exec /home/toxic/.bun/bin/bun run src/index.ts "$@"

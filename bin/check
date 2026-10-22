@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# estate-dispersal — self-test gate (PASS/FAIL).
+# Runs the bun test suite (backhaul, fastest-wins, substrates). Uses the real
+# bun binary path so the estate run-fast shim cannot abort into a false breach.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+echo "== estate-dispersal check: start =="
+BUN="${BUN:-/home/toxic/.bun/bin/bun}"
+if ! command -v "$BUN" >/dev/null 2>&1; then
+  echo "FAIL: bun not found at $BUN"
+  exit 1
+fi
+
+set +e
+out="$("$BUN" test 2>&1)"
+rc=$?
+set -e
+echo "$out"
+
+[ "$rc" -eq 0 ] || { echo "FAIL: bun test rc=$rc"; exit 1; }
+echo "$out" | grep -qiE '[0-9]+ pass|[0-9]+ pass' || { echo "FAIL: no pass marker in test output"; exit 1; }
+
+echo "== estate-dispersal check: PASS =="
+exit 0
